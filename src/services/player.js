@@ -190,19 +190,21 @@ async function getNonBidPlayers(id) {
             let players =[];
 
             if(id){
-                players = await models.players.findAll({
+                players = await models.players.findOne({
                     where: {
                       bid_amount: 0,
                       id : id,
                       un_sold : false
-                    }
+                    },
+                    order: models.sequelize.random()
                   });
             }else{
-                players = await models.players.findAll({
+                players = await models.players.findOne({
                     where: {
                       bid_amount: 0,
                       un_sold : false
-                    }
+                    },
+                    order: models.sequelize.random()
                   });
             }
             // let promiseArray =[];
